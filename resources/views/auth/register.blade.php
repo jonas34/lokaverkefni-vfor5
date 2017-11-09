@@ -91,7 +91,8 @@ p.subtitle {
           <p class="has-text-grey">Already have an account?</p>
           <br>
           <p class="has-text-grey">
-            <a href="/login">Sign In</a>
+            <a href="/login">Sign In</a>  &nbsp;·&nbsp;
+            <a href="../">Heim</a>
           </p>
         </div>
       </div>

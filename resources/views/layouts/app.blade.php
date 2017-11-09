@@ -68,7 +68,8 @@ div.column.is-8:first-child {
 }
 .promo-block .container {
   margin: 1rem 5rem;
-}</style>
+}
+</style>
 </head>
 <body>
 
@@ -77,7 +78,7 @@ div.column.is-8:first-child {
     <nav class="navbar is-white">
       <div class="navbar-brand">
         <a class="navbar-item brand-text" href="../">
-          Jman Blog          
+          Jman Blogg          
         </a>
         <div class="navbar-burger burger" data-target="navMenu">
           <span></span>
@@ -87,88 +88,43 @@ div.column.is-8:first-child {
       </div>
       <div id="navMenu" class="navbar-menu">
         <div class="navbar-start">
-          <a class="navbar-item" href="#">
-            Home
+          <a class="navbar-item" href="../">
+            Heim
           </a>
-          <a class="navbar-item" href="#">
-            All Blogs
+          <a class="navbar-item" href="/blogs">
+            Skoða Blogg
           </a>
-          <a class="navbar-item" href="#">
-            Create New Blog
+          <a class="navbar-item" href="/blogs/create">
+            Skrifa Nýtt Blogg
           </a>
         </div>
         <div class="navbar-end">
-          <a class="navbar-item" href="/login">
-            Login
-          </a>
-          <a class="navbar-item" href="/register">
-            Register
-          </a>
+          @if( ! auth()->check() )
+            <a class="navbar-item" href="/login">
+              Innskrá
+            </a>
+            <a class="navbar-item" href="/register">
+              Nýskrá
+            </a>
+          @else
+            <a class="navbar-item" onclick="event.preventDefault();
+                                            document.getElementById('logout').submit();
+                                                      ">
+              Útskrá
+            </a>
+            <form id="logout" method="POST" action="/logout">
+              {{ csrf_field() }}
+            </form>
+          @endif
         </div>
       </div>
     </nav>
     <!-- END NAV -->
-
-    <!-- START ARTICLE FEED -->
     <section class="articles">
         <div class="column is-8 is-offset-2">
-
-          <!-- START PROMO BLOCK -->
-          <section class="hero is-danger is-bold is-small promo-block">
-            <div class="hero-body">
-              <div class="container">
-                <h1 class="title">
-                  <i class="fa fa-bell-o"></i> 
-                   
-                </h1>
-                <h2 class="subtitle">
-                  
-                </h2>
-              </div>
-            </div>
-          </section>
-          <!-- END PROMO BLOCK -->
-
-          <!-- START ARTICLE -->
-          <div class="card article">
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content has-text-centered">
-                  <p class="title article-title"></p>
-                  <p class="subtitle is-6 article-subtitle">
-                    <a href="#"></a> 
-                  </p>
-                </div>
-              </div>
-
-            <div class="content article-body">
-                <p> </p>
-                <p></p>
-                <h3 class="has-text-centered"></h3>
-                <p> 
-                </p>
-              </div>
-            </div>
-          </div>
-          <!-- END ARTICLE -->
-
-          <!-- START PROMO BLOCK -->
-          <section class="hero is-info is-bold is-small promo-block">
-            <div class="hero-body">
-              <div class="container">
-                <h1 class="title">
-                  <i class="fa fa-bell-o"></i> 
-                   
-                </h1>
-                <h2 class="subtitle">
-                  
-                </h2>
-              </div>
-            </div>
-          </section>
-          <!-- END PROMO BLOCK -->
-    </section>
-    <!-- END ARTICLE FEED -->
+          @yield('content')
+        </div>
+    </section>   
   </div>
   <script async type="text/javascript" src="../js/bulma.js"></script>
 </body>

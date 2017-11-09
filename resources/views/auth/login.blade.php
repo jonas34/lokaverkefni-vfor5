@@ -79,7 +79,8 @@ p.subtitle {
           </div>
           <p class="has-text-grey">
             <a href="/register">Sign Up</a> &nbsp;·&nbsp;
-            <a href="{{ route('password.request') }}">Forgot Password</a> 
+            <a href="{{ route('password.request') }}">Forgot Password</a> &nbsp;·&nbsp;
+            <a href="../">Heim</a> 
           </p>
         </div>
       </div>
