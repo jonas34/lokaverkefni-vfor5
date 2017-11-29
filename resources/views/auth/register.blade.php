@@ -52,7 +52,7 @@ p.subtitle {
           <h3 class="title has-text-grey">Sign Up</h3>
           <p class="subtitle has-text-grey">Please Sign Up To Join the Community</p>
           <div class="box">
-            @include('errors');
+            @include('common.errors');
             <form action="/register" method="POST">
               {{ csrf_field() }}
               <div class="field">

@@ -2,7 +2,7 @@
 
 @section('content')
 
-@foreach($blogs as $blog)
+@forelse($blogs as $blog)
 <div class="card article">
   <div class="card-content">
     <div class="media">
@@ -26,7 +26,11 @@
         </p>
     </div>
   </div>
+@empty
+  <p> No blogs available </p>
 </div>
-@endforeach
+@endforelse
+<hr>
+  {{ $blogs->links() }}
 
 @endsection

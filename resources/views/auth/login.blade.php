@@ -54,7 +54,7 @@ p.subtitle {
           <h3 class="title has-text-grey">Login</h3>
           <p class="subtitle has-text-grey">Please login to Continue</p>
           <div class="box">
-            
+            @include('common.errors')
             <form action="/login" method="POST">
               {{ csrf_field() }}
               <div class="field">

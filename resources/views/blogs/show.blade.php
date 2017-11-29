@@ -4,6 +4,27 @@
 <div class="card article">
   <div class="card-content">
     <div class="media">
+      @if ( auth()->id() == $blogs->user_id )
+      <div class="dropdown is-hoverable">
+        <div class="dropdown-trigger">
+          <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+            <span class="icon is-small">
+              <i class="fa fa-angle-down" aria-hidden="true"></i>
+            </span>
+          </button>
+        </div>
+        <div class="dropdown-menu" id="dropdown-menu4" role="menu">
+          <div class="dropdown-content">
+            <a href="/blogs/{{ $blogs->id }}/edit" class="dropdown-item">
+              Edit
+            </a>
+            <a href="/blogs/{{ $blogs->id }}/delete" class="dropdown-item">
+              Delete
+            </a>
+          </div>
+        </div>
+      </div>
+      @endif
       <div class="media-content has-text-centered">
         <p class="title article-title" style="font-family:cursive;">{{ $blogs->title }}</p>
         <p class="subtitle is-6 article-subtitle">
@@ -21,9 +42,10 @@
     </div>
   </div>
 </div>
+<br>
   
   <article class="media">
-  @foreach($blogs->comments()->latest()->get() as $comment)
+  @forelse($blogs->comments()->latest()->get() as $comment)
   <div class="media-content">
     <div class="content">
       <p>
@@ -31,10 +53,21 @@
         <br>
         {{ $comment->text }}
         <br>
-        <small><a>Like</a> · {{ $comment->created_at->diffForHumans() }}</small>
+        <small>
+          <form method="POST" action="/blogs/{{ $comment->id }}/like">
+            {{ csrf_field() }}
+            <button>Like   </button>
+          ·  {{ $comment->likes()->count() }} {{ str_plural('like', $comment->likes()->count() ) }}
+          </form> 
+          · {{ $comment->created_at->diffForHumans() }}
+        </small>
       </p>
     </div>
-    @endforeach
+
+    @empty
+      <p class="has-text-centered">  Be the first one to comment </p>
+    
+    @endforelse
   </article>
   
   <article class="media">

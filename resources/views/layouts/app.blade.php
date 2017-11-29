@@ -120,6 +120,42 @@ div.column.is-8:first-child {
       </div>
     </nav>
     <!-- END NAV -->
+
+  @if ($flash = session('message'))
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+      <script type="text/javascript">
+        swal({
+          text: "{{ $flash }}",
+          icon: "success",
+          timer: 1500,
+      });
+      </script>
+          
+  @endif
+
+  @if ($flash = session('edit_message'))
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+      <script type="text/javascript">
+        swal({
+          text: "{{ $flash }}",
+          icon: "error",
+      });
+      </script>
+          
+  @endif
+
+  @if ($flash = session('deletion_message'))
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+      <script type="text/javascript">
+        swal({
+          text: "{{ $flash }}",
+          icon: "success",
+          timer: 1500,
+      });
+      </script>
+          
+  @endif
+
     <section class="articles">
         <div class="column is-8 is-offset-2">
           @yield('content')

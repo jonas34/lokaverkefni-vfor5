@@ -17,16 +17,16 @@ class BlogsController extends Controller
 
     public function index()
     {
-      $blogs = Blog::latest()->get();
+      $blogs = Blog::latest()->paginate(10);
 
     	return view('blogs.index', compact('blogs'));
     }
 
-    public function show($id)
+    public function show(Blog $blogs)
     {
-    	$blogs = Blog::find($id);
 
     	return view('blogs.show', compact('blogs'));
+      
    	}
 
     public function create()
@@ -42,6 +42,8 @@ class BlogsController extends Controller
         'body' => 'required|min:20',
       ]);
       
+      session()->flash('message', 'Your blog was successfully posted!');
+
        Blog::create([
         'title' => $request['title'],
         'body' => $request['body'],
@@ -49,5 +51,40 @@ class BlogsController extends Controller
       ]);
 
       return redirect('/blogs');
+    }
+
+    public function edit(Blog $blogs)
+    {
+  
+      if ( auth()->id() == $blogs->user_id ) {
+        return view('blogs.update', compact('blogs'));
+      }
+  
+        session()->flash('edit_message', 'You must be the owner of this blog to do this action!');
+        
+     
+    }
+
+    public function update(Blog $blogs, Request $request)
+    {
+      $blogs->update($request->all());;
+     
+      return redirect('/blogs');
+    }
+
+    public function delete(Blog $blogs)
+    {
+
+
+       if ( auth()->id() == $blogs->user_id ) {
+       
+        $blogs->delete();
+
+ 
+      }
+      
+      session()->flash('deletion_message', 'Your blog has been deleted!');
+      return redirect('/blogs');
+  
     }
 }

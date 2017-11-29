@@ -8,8 +8,12 @@ use App\Comment;
 
 class CommentController extends Controller
 {
-    
-	public function show($id)
+  public function __construct()
+  {
+      $this->middleware('auth')->except('show');
+  }  
+	
+  public function show($id)
 	{
       $comments = Comment::find($id);
 

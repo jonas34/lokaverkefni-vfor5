@@ -8,19 +8,20 @@
 	</head>
 	<body>
 		<div class="heading" style="font-size:24px;text-align:center;">Skrifa Nýtt Blogg</div><br>
+		@include('common.errors')
 		<form method="POST" action="/blogs">
 			{{ csrf_field() }}
 			<div class="field">
 	  			<label class="label">Title</label>
 	  			<div class="control">
-	    			<input class="input" name="title" type="title" placeholder="Title">
+	    			<input class="input" name="title" type="title" placeholder="Title" value="{{ old('title') }}">
 	  			</div>
 			</div>
 
 			<div class="field">
 	  			<label class="label">Body</label>
 	  			<div class="control">
-	    			<textarea class="textarea" rows="7" name="body" type="body" placeholder="write something special"></textarea><br>
+	    			<textarea class="textarea" rows="7" name="body" type="body" placeholder="write something special">{{{ Input::old('body') }}}</textarea><br>
                     <button class="button is-primary" style="background-color:#5bc0de; border-color:#46B8D9">Publish</button>
 	  			</div>
 			</div>
