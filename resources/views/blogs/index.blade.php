@@ -26,11 +26,13 @@
         </p>
     </div>
   </div>
+</div>
+
 @empty
   <p> No blogs available </p>
-</div>
+
 @endforelse
 <hr>
-  {{ $blogs->links() }}
+  {{ $blogs->links() }}  
 
 @endsection

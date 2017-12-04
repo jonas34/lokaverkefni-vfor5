@@ -54,9 +54,9 @@
         {{ $comment->text }}
         <br>
         <small>
-          <form method="POST" action="/blogs/{{ $comment->id }}/like">
+          <form id="like_{{ $comment->id }}" method="POST" action="/blogs/{{ $comment->id }}/like">
             {{ csrf_field() }}
-            <button>Like   </button>
+            <a onclick="event.preventDefault(); document.getElementById('like_{{ $comment->id }}').submit();">Like   </a>
           ·  {{ $comment->likes()->count() }} {{ str_plural('like', $comment->likes()->count() ) }}
           </form> 
           · {{ $comment->created_at->diffForHumans() }}
@@ -64,8 +64,10 @@
       </p>
     </div>
 
+
+
     @empty
-      <p class="has-text-centered">  Be the first one to comment </p>
+      <div class="heading" style="font-size:20px;text-align:center;font-family:helvetica;opacity: 0.4;">Be The First One To Comment</div>
     
     @endforelse
   </article>

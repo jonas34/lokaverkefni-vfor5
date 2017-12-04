@@ -9,67 +9,7 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
   <!-- Bulma Version 0.6.0 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.min.css" integrity="sha256-HEtF7HLJZSC3Le1HcsWbz1hDYFPZCqDhZa9QsCgVUdw=" crossorigin="anonymous" />
-  <style type="text/css">
-  html,body {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 14px;
-  background: #F0F2F4;
-}
-.navbar.is-white {
-  background: #F0F2F4;
-}
-.navbar-brand .brand-text {
-  font-size: 1.11rem;
-  font-weight: bold;
-}
-.articles {
-  margin: 5rem 0;
-}
-.articles .content p {
-    line-height: 1.9;
-    margin: 15px 0;
-}
-.author-image {
-    position: absolute;
-    top: -30px;
-    left: 50%;
-    width: 60px;
-    height: 60px;
-    margin-left: -30px;
-    border: 3px solid #ccc;
-    border-radius: 50%;
-}
-.media-center {
-  display: block;
-  margin-bottom: 1rem;
-}
-.media-content {
-  margin-top: 3rem;
-}
-.article, .promo-block {
-  margin-top: 6rem;
-}
-div.column.is-8:first-child {
-  padding-top: 0;
-  margin-top: 0;
-}
-.article-title {
-  font-size: 2rem;
-  font-weight: lighter;
-  line-height: 2;
-}
-.article-subtitle {
-  color: #909AA0;
-  margin-bottom: 3rem;
-}
-.article-body {
-  line-height: 1.4;
-  margin: 0 6rem;
-}
-.promo-block .container {
-  margin: 1rem 5rem;
-}
-</style>
+  <link rel="stylesheet" type="text/css" href="/css/app_blade_php.css"/>
 </head>
 <body>
 
@@ -132,6 +72,7 @@ div.column.is-8:first-child {
       </script>
           
   @endif
+
 
   @if ($flash = session('edit_message'))
       <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
